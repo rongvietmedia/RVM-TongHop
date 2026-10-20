@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RVM Tổng Hợp — Bấm một nút, ra video tổng hợp hài có bài học</title>
+<meta name="description" content="Phần mềm Windows tự tìm, cắt, chấm điểm khoảnh khắc và dựng video tổng hợp hài kèm lời bình kiến thức. Dùng nguồn Creative Commons, có ghi nguồn và báo cáo rủi ro bản quyền.">
+<style>
+:root{--bg:#0a0f1c;--panel:#0f1729;--panel2:#13203a;--line:#22324f;--gold:#d8b26a;--gold2:#f1d18f;--teal:#2dd4bf;--red:#e0313b;--txt:#e7ecf5;--mut:#8a98b3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.6 "Segoe UI",system-ui,-apple-system,sans-serif}
+a{color:var(--teal)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.top{position:sticky;top:0;z-index:5;background:rgba(10,15,28,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--gold2);letter-spacing:.4px}
+.mark{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--red),#8b0f17);color:#fff;font:900 22px Impact,sans-serif}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:12px;padding:14px 26px;font-weight:800;font-size:16px;text-decoration:none;color:#1a1206;background:linear-gradient(180deg,#f7e0a6,#d8b26a);box-shadow:0 8px 24px rgba(216,178,106,.25);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--gold2);border:1.5px solid var(--gold);box-shadow:none}
+.btn.sm{padding:9px 16px;font-size:14px}
+.hero{padding:72px 0 56px;background:radial-gradient(900px 480px at 80% -10%,rgba(224,49,59,.22),transparent 60%),radial-gradient(800px 420px at 0% 0%,rgba(45,212,191,.12),transparent 60%)}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.kicker{display:inline-block;font-size:13px;font-weight:800;letter-spacing:1px;color:#1a1206;background:var(--gold2);padding:6px 12px;border-radius:20px;text-transform:uppercase}
+h1{font-size:46px;line-height:1.12;margin:16px 0 14px;letter-spacing:-.3px}
+h1 em{font-style:normal;color:var(--gold2)}
+.lead{font-size:19px;color:#c4cde0;margin:0 0 26px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ticks{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;color:var(--mut);font-size:14px}
+.ticks span::before{content:"✓ ";color:var(--teal);font-weight:800}
+.mock{background:linear-gradient(180deg,#111b30,#0b1222);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
+.mock .bar{display:flex;gap:6px;margin-bottom:12px}.mock .bar i{width:10px;height:10px;border-radius:50%;background:#2b3a58}
+.mock .steps{display:grid;gap:8px}
+.mock .s{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;display:flex;justify-content:space-between;gap:10px}
+.mock .s b{color:var(--gold2)}.mock .s small{color:var(--mut)}
+.mock .prog{margin-top:12px;height:14px;border:1px solid var(--gold);border-radius:4px;overflow:hidden}
+.mock .prog div{height:100%;width:100%;background:linear-gradient(90deg,#b8862f,var(--gold2))}
+.mock .done{margin-top:8px;color:var(--teal);font-weight:700;font-size:14px}
+section{padding:72px 0}
+.alt{background:#0c1426;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+h2{font-size:34px;line-height:1.2;margin:0 0 12px;letter-spacing:-.2px}
+.sub{color:var(--mut);font-size:17px;margin:0 0 36px;max-width:720px}
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{margin:0 0 8px;font-size:18px;color:var(--gold2)}
+.card p{margin:0;color:#b8c2d8;font-size:15px}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+.step{position:relative;padding:26px 22px 22px}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);color:var(--gold2);font-weight:900;font-size:18px;margin-bottom:12px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat .card{padding:20px}
+.feat .ic{font-size:26px;margin-bottom:6px}
+.price{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:stretch}
+.plan{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 18px;display:flex;flex-direction:column;text-align:center}
+.plan h3{margin:0;font-size:17px;color:var(--gold2)}
+.plan .p{font-size:30px;font-weight:900;margin:12px 0 2px;letter-spacing:-.5px}
+.plan .per{color:var(--mut);font-size:13px;margin-bottom:14px}
+.plan ul{list-style:none;padding:0;margin:0 0 18px;text-align:left;font-size:14px;color:#b8c2d8;flex:1}
+.plan li{padding:5px 0;border-bottom:1px dashed #22324f}
+.plan li::before{content:"✓ ";color:var(--teal);font-weight:800}
+.plan.hot{border:2px solid var(--gold);background:linear-gradient(180deg,#1b1d24,#0f1729);position:relative;transform:translateY(-6px)}
+.plan.hot::after{content:"Lựa chọn tốt nhất";position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold2);color:#1a1206;font-size:12px;font-weight:800;padding:4px 12px;border-radius:14px;white-space:nowrap}
+.plan .btn{width:100%;text-align:center}
+.note{margin-top:18px;color:var(--mut);font-size:14px}
+.faq details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:700;font-size:16px;color:var(--txt)}
+.faq details p{color:#b8c2d8;margin:10px 0 0;font-size:15px}
+.warn{background:#2a1215;border:1px solid #6b1f25;border-radius:14px;padding:16px 20px;color:#ffc4c7;font-size:15px;margin-top:24px}
+.final{text-align:center;padding:84px 0;background:radial-gradient(700px 360px at 50% 0%,rgba(216,178,106,.18),transparent 70%)}
+.final h2{font-size:40px}
+footer{padding:28px 0 40px;color:#55627c;font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:900px){.hero .grid{grid-template-columns:1fr}h1{font-size:36px}.pains,.steps3,.feat{grid-template-columns:1fr}.price{grid-template-columns:1fr 1fr}.plan.hot{transform:none}}
+@media (max-width:560px){.price{grid-template-columns:1fr}h2{font-size:27px}.final h2{font-size:28px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="mark">R</span> RVM TỔNG HỢP</div>
+    <a class="btn sm" href="#gia">Xem giá &amp; mua</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <span class="kicker">Phần mềm cho Windows</span>
+      <h1>Bấm một nút, ra <em>video tổng hợp hài</em> có bài học</h1>
+      <p class="lead">Phần mềm tự tìm clip, chọn đúng khoảnh khắc hay nhất, viết lời bình kiến thức pha hài và dựng thành video 1080p — kèm ảnh bìa, tiêu đề và file ghi nguồn. Bạn chỉ việc đăng.</p>
+      <div class="ctas">
+        <a class="btn" href="#gia">Mua ngay — từ 599.000đ</a>
+        <a class="btn ghost" href="#cach">Xem cách hoạt động</a>
+      </div>
+      <div class="ticks"><span>Không cần biết dựng phim</span><span>Chạy trên Windows</span><span>Nguồn có quyền dùng</span></div>
+    </div>
+    <div class="mock" aria-label="Minh hoạ giao diện phần mềm">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="steps">
+        <div class="s"><span><b>1 · Từ khoá hot</b><br><small>Chọn 3–5 từ khoá đang được tìm nhiều</small></span></div>
+        <div class="s"><span><b>2 · Lấy nguồn</b><br><small>Chỉ clip Creative Commons, ghi công tự động</small></span></div>
+        <div class="s"><span><b>3 · Lời bình</b><br><small>Kiến thức thật + chốt hài, đọc bằng giọng của bạn</small></span></div>
+        <div class="s"><span><b>4 · LÀM VIDEO</b><br><small>1080p · 3 ảnh bìa · Shorts 9:16</small></span></div>
+      </div>
+      <div class="prog"><div></div></div>
+      <div class="done">✓ Xong! Video, ảnh bìa và file tiêu đề đã sẵn sàng</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="van-de">
+  <div class="wrap">
+    <h2>Làm video tổng hợp thủ công thì mất gì?</h2>
+    <p class="sub">Mỗi video mất hàng giờ tìm clip, cắt, chọn cảnh, viết chữ và dựng. Và nếu dùng clip không có quyền, kênh có thể bị khoá kiếm tiền.</p>
+    <div class="pains">
+      <div class="card"><h3>⏳ Tốn thời gian</h3><p>Tìm clip, xem từng đoạn, cắt từng khoảnh khắc, rồi ghép — một video dễ mất cả buổi.</p></div>
+      <div class="card"><h3>🎯 Khó chọn cảnh hay</h3><p>Không phải cảnh nào cũng đáng xem. Phần mềm chấm điểm từng khoảnh khắc và loại cảnh chết.</p></div>
+      <div class="card"><h3>⚠️ Rủi ro bản quyền</h3><p>Dùng clip của người khác dễ bị claim. Phần mềm ưu tiên nguồn Creative Commons và ghi nguồn đầy đủ.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="cach">
+  <div class="wrap">
+    <h2>Ba bước là xong</h2>
+    <p class="sub">Không cần biết dựng phim. Mọi thứ nằm trên một màn hình.</p>
+    <div class="steps3">
+      <div class="card step"><h3>Chọn chủ đề</h3><p>Chọn có sẵn (vui nhộn, thú cưng, té ngã…) hoặc gõ chủ đề riêng của bạn. Phần mềm gợi ý từ khoá đang hot.</p></div>
+      <div class="card step"><h3>Chọn kiểu video</h3><p>Số phút, số video, cấu trúc <b>tuyến câu chuyện có bài học</b> hoặc chia chương, độ dài khoảnh khắc 3–5 hoặc 4–7 giây.</p></div>
+      <div class="card step"><h3>Bấm LÀM VIDEO</h3><p>Chờ phần mềm dựng xong. Nhận video, 3 ảnh bìa, file tiêu đề, mô tả đã ghi nguồn và báo cáo rủi ro.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="tinh-nang">
+  <div class="wrap">
+    <h2>Mọi thứ cần cho một kênh video tổng hợp</h2>
+    <p class="sub">Không phải ghép nhiều công cụ. Một phần mềm làm từ nguồn đến ảnh bìa.</p>
+    <div class="feat">
+      <div class="card"><div class="ic">🧠</div><h3>AI chọn khoảnh khắc</h3><p>Chấm điểm hình ảnh và âm thanh (tiếng cười, va chạm), loại cảnh chết, bỏ đoạn trùng nhau giữa các nguồn.</p></div>
+      <div class="card"><div class="ic">🎙️</div><h3>Lời bình kiến thức pha hài</h3><p>Viết bằng 16 ngôn ngữ. Đọc bằng giọng bạn chọn qua ai84.pro hoặc ElevenLabs, nhập ID hoặc tên giọng.</p></div>
+      <div class="card"><div class="ic">📖</div><h3>Tuyến câu chuyện</h3><p>Gom khoảnh khắc thành các mạch có bài học, sắp theo thứ tự kể. Video có nội dung, không chỉ là chuỗi clip.</p></div>
+      <div class="card"><div class="ic">🎬</div><h3>Dựng 1080p tự động</h3><p>Phụ đề, chữ bật lúc cao trào, tên kênh nguồn, thẻ mở đầu và kết, nhạc nền tự nhỏ khi có lời bình.</p></div>
+      <div class="card"><div class="ic">🖼️</div><h3>3 ảnh bìa + tiêu đề</h3><p>Ba phương án ảnh bìa, tiêu đề và mô tả theo ngôn ngữ bạn chọn. Có sẵn chữ bìa gây tò mò.</p></div>
+      <div class="card"><div class="ic">📱</div><h3>Kèm Shorts 9:16</h3><p>Tự tạo video dọc từ cùng bộ khoảnh khắc, có phụ đề và lời bình riêng.</p></div>
+      <div class="card"><div class="ic">🛡️</div><h3>Ưu tiên nguồn có quyền dùng</h3><p>Mặc định chỉ tải Creative Commons, tự ghi công. Có thư mục riêng cho clip bạn tự quay hoặc đã mua bản quyền.</p></div>
+      <div class="card"><div class="ic">📊</div><h3>Báo cáo rủi ro bản quyền</h3><p>Mỗi video có tỷ lệ nguồn có quyền dùng và mức rủi ro, kèm hướng dẫn đăng an toàn trước khi công khai.</p></div>
+      <div class="card"><div class="ic">🔐</div><h3>Khoá API mã hoá trên máy</h3><p>Khoá OpenAI, giọng đọc của bạn được lưu mã hoá trên máy, không gửi đi đâu ngoài nhà cung cấp.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="gia">
+  <div class="wrap">
+    <h2>Chọn gói phù hợp</h2>
+    <p class="sub">Trả một lần cho thời gian bạn chọn. Gia hạn bằng chuyển khoản, cộng tiếp vào thời gian còn lại.</p>
+    <div class="price">
+      <div class="plan"><h3>1 tháng</h3><div class="p">599.000đ</div><div class="per">dùng 30 ngày</div><ul><li>Đủ tính năng</li><li>Lời bình &amp; giọng đọc</li><li>Cập nhật phiên bản</li></ul><a class="btn ghost" href="#mua">Chọn gói này</a></div>
+      <div class="plan"><h3>3 tháng</h3><div class="p">999.000đ</div><div class="per">≈ 333.000đ / tháng</div><ul><li>Đủ tính năng</li><li>Lời bình &amp; giọng đọc</li><li>Cập nhật phiên bản</li></ul><a class="btn ghost" href="#mua">Chọn gói này</a></div>
+      <div class="plan hot"><h3>6 tháng</h3><div class="p">1.499.000đ</div><div class="per">≈ 250.000đ / tháng</div><ul><li>Đủ tính năng</li><li>Lời bình &amp; giọng đọc</li><li>Cập nhật phiên bản</li><li>Tiết kiệm 58%</li></ul><a class="btn" href="#mua">Mua gói 6 tháng</a></div>
+      <div class="plan"><h3>1 năm</h3><div class="p">1.999.000đ</div><div class="per">≈ 167.000đ / tháng</div><ul><li>Đủ tính năng</li><li>Lời bình &amp; giọng đọc</li><li>Cập nhật phiên bản</li><li>Tiết kiệm 72%</li></ul><a class="btn ghost" href="#mua">Chọn gói này</a></div>
+      <div class="plan"><h3>Vĩnh viễn</h3><div class="p">3.686.000đ</div><div class="per">dùng mãi mãi</div><ul><li>Đủ tính năng</li><li>Lời bình &amp; giọng đọc</li><li>Cập nhật phiên bản</li><li>Không phải gia hạn</li></ul><a class="btn ghost" href="#mua">Chọn gói này</a></div>
+    </div>
+    <p class="note">Giá đã bao gồm thuế. Một key dùng cho một máy tính Windows.</p>
+  </div>
+</section>
+
+<section class="alt" id="mua">
+  <div class="wrap">
+    <h2>Mua và kích hoạt trong 3 phút</h2>
+    <p class="sub">Không cần thẻ tín dụng. Chuyển khoản là đủ.</p>
+    <div class="steps3">
+      <div class="card step"><h3>Tải và cài phần mềm</h3><p>Tải file <b>RVM-Tong-Hop-Setup</b> và cài đặt. Mở app, ghi lại <b>mã máy</b> hiển thị ở màn hình kích hoạt.</p></div>
+      <div class="card step"><h3>Chuyển khoản</h3><p>Liên hệ Zalo <b>0918637699</b> với mã máy và gói đã chọn, hoặc bấm <b>Gia hạn / mua</b> trong app để quét mã QR chuyển khoản đúng số tiền, đúng nội dung.</p></div>
+      <div class="card step"><h3>Nhận key và dùng</h3><p>Sau khi nhận tiền, bấm <b>Tôi đã thanh toán — nhận key</b> trong app. Phần mềm tự kích hoạt đúng thời hạn đã mua.</p></div>
+    </div>
+    <div class="warn"><b>Lưu ý quan trọng:</b> phần mềm không đảm bảo kênh của bạn không bị bản quyền hay đổi chính sách. Bạn chịu trách nhiệm về quyền sử dụng nguồn video đưa vào. Hãy đăng ở chế độ <b>Không công khai</b> trước, đợi mục Kiểm tra của YouTube báo ổn rồi mới công khai.</div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <h2>Câu hỏi thường gặp</h2>
+    <p class="sub">Nếu chưa thấy câu trả lời, nhắn Zalo <b>0918637699</b>.</p>
+    <details open><summary>Tôi có cần biết dựng video không?</summary><p>Không. Bạn chọn chủ đề, bấm một nút và nhận video. Có hướng dẫn từng bước ngay trong app.</p></details>
+    <details><summary>Phần mềm có chạy trên Mac hay điện thoại không?</summary><p>Hiện chỉ chạy trên Windows 10 trở lên.</p></details>
+    <details><summary>Cần mua thêm gì không?</summary><p>Cần khoá OpenAI của riêng bạn để AI chấm khoảnh khắc và viết lời bình (thường chỉ vài nghìn đồng mỗi video). Giọng đọc qua ai84.pro hoặc ElevenLabs là tuỳ chọn.</p></details>
+    <details><summary>Một key dùng được trên mấy máy?</summary><p>Một key gắn với một máy. Đổi máy, nhắn RVM để chuyển key sang máy mới.</p></details>
+    <details><summary>Hết hạn thì sao?</summary><p>Phần mềm báo trước số ngày còn lại. Bấm <b>Gia hạn</b> trong app, chuyển khoản, thời gian sẽ được cộng tiếp vào hạn cũ.</p></details>
+    <details><summary>Phần mềm có vi phạm bản quyền không?</summary><p>Mặc định phần mềm chỉ tải nguồn Creative Commons và ghi công đầy đủ. Bạn tự chịu trách nhiệm về nguồn mình đưa vào, phần mềm không lách được hệ thống Content ID.</p></details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Làm video tổng hợp hôm nay, không phải hàng tuần</h2>
+    <p class="sub" style="margin:0 auto 28px">Chọn gói, mua trong vài phút. Có hướng dẫn từng bước.</p>
+    <div class="ctas" style="justify-content:center"><a class="btn" href="#gia">Xem giá &amp; mua ngay</a><a class="btn ghost" href="#cach">Xem lại cách hoạt động</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© RVM - RV Group · Phần mềm bản quyền, mỗi key dùng cho một máy · Liên hệ Zalo 0918637699</div>
+</footer>
+
+</body>
+</html>

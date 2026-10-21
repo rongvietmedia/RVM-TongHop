@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RVM Tổng Hợp — Hướng dẫn sử dụng</title>
+<style>
+:root{--bg:#0a0f1c;--panel:#0f1729;--line:#22324f;--gold:#d8b26a;--gold2:#f1d18f;--teal:#2dd4bf;--red:#e0313b;--txt:#e7ecf5;--mut:#8a98b3}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.55 "Segoe UI",system-ui,sans-serif}
+.deck{max-width:1100px;margin:0 auto;padding:24px 16px 60px}
+.slide{background:linear-gradient(160deg,#0f1729,#0a0f1c);border:1px solid var(--line);border-radius:16px;padding:36px 42px;margin:0 0 28px;min-height:520px;position:relative;page-break-after:always}
+.slide .no{position:absolute;right:22px;top:16px;color:#55627c;font-size:13px}
+.slide h1{margin:0 0 6px;font-size:40px;color:var(--gold2);letter-spacing:.3px}
+.slide h2{margin:0 0 14px;font-size:28px;color:var(--gold2)}
+.slide h3{margin:18px 0 8px;font-size:18px;color:var(--teal)}
+.sub{color:var(--mut);font-size:16px;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.mark{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--red),#8b0f17);color:#fff;font:900 30px Impact,sans-serif}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+th{color:var(--gold2);font-weight:700;background:#101b32}
+td code,code{background:#0a1222;border:1px solid var(--line);padding:1px 6px;border-radius:5px;color:#9ff3e6;font-size:14px}
+.btnx{display:inline-block;padding:4px 10px;border-radius:7px;font-weight:700;font-size:14px;border:1px solid var(--line);background:#13203a}
+.btn-red{background:linear-gradient(180deg,#1c2a3e,#121d2e);border:2px solid var(--gold);color:var(--gold2);font-family:Georgia,serif}
+.box{background:#0b1d22;border:1px solid #1f6b62;border-radius:10px;padding:12px 16px;margin:12px 0}
+.warn{background:#2a1215;border:1px solid #6b1f25;border-radius:10px;padding:12px 16px;margin:12px 0;color:#ffc4c7}
+.tip{background:#1a1a0e;border:1px solid #5a5520;border-radius:10px;padding:12px 16px;margin:12px 0;color:#f3e7a6}
+ol li,ul li{margin:6px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.step{display:flex;gap:12px;margin:10px 0}
+.step .n{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid var(--gold);color:var(--gold2);display:grid;place-items:center;font-weight:800}
+.tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:12px;background:#13203a;border:1px solid var(--line);color:var(--mut)}
+.tag.red{color:#ff9aa0;border-color:#6b1f25}.tag.green{color:#9ff3e6;border-color:#1f6b62}
+.cover{text-align:center;padding-top:70px}
+.cover h1{font-size:56px}
+@media print{body{background:#fff;color:#111}.slide{border:1px solid #ccc;background:#fff;color:#111;min-height:auto;page-break-after:always}.slide h1,.slide h2,.slide h3{color:#7a4a00}th{background:#f3efe2;color:#111}td code,code{color:#0a5c52;background:#eef}.warn,.tip,.box{color:#111}}
+@media (max-width:760px){.cols{grid-template-columns:1fr}.slide{padding:24px 20px}.slide h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide cover">
+  <div class="brand" style="justify-content:center"><span class="mark">R</span></div>
+  <h1>RVM TỔNG HỢP</h1>
+  <div class="sub">Hướng dẫn sử dụng · phiên bản 2.3</div>
+  <p style="color:var(--mut)">Bấm một nút — ra video tổng hợp hài/kiến thức có lời bình.<br>Tài liệu này giải thích từng mục, từng ô, từng nút trong phần mềm.</p>
+  <p class="small" style="color:#55627c">© RVM - RV Group · Hỗ trợ Zalo/ĐT 0918637699</p>
+  <span class="no">1 / 14</span>
+</section>
+
+<section class="slide">
+  <span class="no">2 / 14</span>
+  <h2>Mục lục</h2>
+  <div class="cols">
+    <ol>
+      <li>Giới thiệu & quy trình</li>
+      <li>Cài đặt & kích hoạt bản quyền</li>
+      <li>Giao diện chính</li>
+      <li>Bước 1 — Từ khoá hot</li>
+      <li>Bước 2 — Lấy nguồn video</li>
+    </ol>
+    <ol start="6">
+      <li>Bước 3 — Hook</li>
+      <li>Bước 4 — Kiểu video</li>
+      <li>Bước 5 — Lời bình & giọng đọc</li>
+      <li>Làm video, dừng, kết quả</li>
+      <li>Khoá API, thư mục, lỗi thường gặp, bản quyền</li>
+    </ol>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="no">3 / 14</span>
+  <h2>Phần mềm làm gì?</h2>
+  <p>Từ một loạt clip gốc có quyền dùng, phần mềm tự động:</p>
+  <div class="cols">
+    <div class="box"><b>Chọn cảnh hay</b><br>Cắt clip thành khoảnh khắc 3–5 giây, AI chấm điểm độ hấp dẫn, bỏ cảnh chết và đoạn trùng.</div>
+    <div class="box"><b>Viết lời bình</b><br>AI viết lời bình kiến thức thật, pha chút hài, theo ngôn ngữ anh chị chọn.</div>
+    <div class="box"><b>Đọc & dựng</b><br>Đọc lời bình bằng giọng anh chị chọn, thêm phụ đề, chữ bật, thẻ chương.</div>
+    <div class="box"><b>Xuất đầy đủ</b><br>Video 1080p, 3 ảnh bìa, Shorts 9:16, file tiêu đề–mô tả có ghi nguồn và báo cáo rủi ro.</div>
+  </div>
+  <div class="warn">Phần mềm <b>không lách được Content ID</b>. Muốn kênh an toàn: dùng nguồn Creative Commons hoặc clip có quyền dùng, và giữ lời bình có kiến thức.</div>
+</section>
+
+<section class="slide">
+  <span class="no">4 / 14</span>
+  <h2>Quy trình 6 bước</h2>
+  <div class="step"><div class="n">1</div><div><b>Từ khoá hot</b> — chọn chủ đề, tìm từ khoá đang được tìm nhiều.</div></div>
+  <div class="step"><div class="n">2</div><div><b>Lấy nguồn</b> — chọn chế độ nguồn, để tool tải clip có quyền dùng.</div></div>
+  <div class="step"><div class="n">3</div><div><b>Hook</b> — (tuỳ chọn) đoạn mở đầu từ video ngắn.</div></div>
+  <div class="step"><div class="n">4</div><div><b>Kiểu video</b> — số phút, cấu trúc, độ dài khoảnh khắc, Shorts.</div></div>
+  <div class="step"><div class="n">5</div><div><b>Lời bình & giọng đọc</b> — ngôn ngữ, giọng, khoá giọng.</div></div>
+  <div class="step"><div class="n">6</div><div><b>LÀM VIDEO</b> → theo dõi tiến độ → <b>KẾT QUẢ</b>.</div></div>
+</section>
+
+<section class="slide">
+  <span class="no">5 / 14</span>
+  <h2>Cài đặt & kích hoạt</h2>
+  <ol>
+    <li>Bấm đúp file cài <code>RVM-Tong-Hop-Setup.exe</code> (bản mới nhất). Nếu Windows hỏi "đã bảo vệ PC": bấm <b>Thông tin bổ sung → Vẫn chạy</b>.</li>
+    <li>Mở app. Nếu chưa kích hoạt, cửa sổ <b>KÍCH HOẠT BẢN QUYỀN</b> hiện ra.</li>
+    <li>Điền <b>Họ tên</b> và <b>Số điện thoại/Zalo</b>, bấm <b>📨 GỬI YÊU CẦU KÍCH HOẠT</b>.</li>
+    <li>Thanh toán theo hướng dẫn. Khi RVM duyệt, bấm <b>🔑 TÔI ĐÃ THANH TOÁN — NHẬN KEY</b>.</li>
+  </ol>
+  <div class="box"><b>Mã máy</b> (XXXX-XXXX-XXXX-XXXX) hiển thị ở ô <i>MÃ MÁY của anh chị</i>. Nút <b>Chép</b> để sao chép. Một key chỉ dùng cho một máy.</div>
+  <h3>Mua / Gia hạn bằng mã QR (tự động)</h3>
+  <div class="cols">
+    <div>
+      <svg viewBox="0 0 300 200" width="100%" style="max-width:300px;border:1px solid var(--line);border-radius:10px;background:#0b1426">
+        <text x="14" y="26" fill="#f1d18f" font-size="13" font-weight="700">GIA HẠN / MUA BẢN QUYỀN</text>
+        <rect x="14" y="36" width="60" height="34" rx="5" fill="#2a2111" stroke="#d8b26a"/><text x="44" y="51" fill="#f1d18f" font-size="9" text-anchor="middle">1 tháng</text><text x="44" y="63" fill="#fff" font-size="9" text-anchor="middle" font-weight="700">599K</text>
+        <rect x="80" y="36" width="60" height="34" rx="5" fill="#101b32" stroke="#22324f"/><text x="110" y="51" fill="#9fb0c9" font-size="9" text-anchor="middle">6 tháng</text><text x="110" y="63" fill="#fff" font-size="9" text-anchor="middle">1.499K</text>
+        <rect x="146" y="36" width="60" height="34" rx="5" fill="#101b32" stroke="#22324f"/><text x="176" y="51" fill="#9fb0c9" font-size="9" text-anchor="middle">Vĩnh viễn</text><text x="176" y="63" fill="#fff" font-size="9" text-anchor="middle">3.686K</text>
+        <rect x="14" y="84" width="84" height="84" rx="6" fill="#fff"/><rect x="24" y="94" width="64" height="64" fill="#0a0f1c"/><rect x="30" y="100" width="12" height="12" fill="#fff"/><rect x="70" y="100" width="12" height="12" fill="#fff"/><rect x="30" y="140" width="12" height="12" fill="#fff"/><rect x="50" y="118" width="18" height="18" fill="#fff"/><text x="56" y="180" fill="#8a98b3" font-size="8" text-anchor="middle">Quét bằng app ngân hàng</text>
+        <text x="110" y="96" fill="#9fb0c9" font-size="9">Ngân hàng: VietinBank</text>
+        <text x="110" y="112" fill="#9fb0c9" font-size="9">STK: 108869663386</text>
+        <text x="110" y="128" fill="#9fb0c9" font-size="9">Chủ TK: TRAN VAN LAM</text>
+        <text x="110" y="144" fill="#f1d18f" font-size="9" font-weight="700">Nội dung: RVM&lt;mã máy&gt;</text>
+      </svg>
+    </div>
+    <div>
+      <ol>
+        <li>Bấm <b>GIA HẠN / MUA BẢN QUYỀN</b> → chọn <b>gói</b> muốn mua (QR tự đổi theo số tiền).</li>
+        <li><b>Quét QR</b> bằng app ngân hàng, hoặc chuyển đúng <b>số tài khoản + số tiền + nội dung</b> hiện trên màn hình.</li>
+        <li>Chuyển xong, app <b>tự nhận và gia hạn đúng gói</b> (tự kiểm tra mỗi 15 giây) — không cần gửi biên lai.</li>
+        <li>Đóng hộp bằng nút <b>Đóng ✕</b>, phím <b>Esc</b>, hoặc bấm ra <b>vùng tối ngoài hộp</b>.</li>
+      </ol>
+      <div class="tip">Nếu RVM gửi key dạng chữ (RVMT1…): mở <i>Đã có KEY dạng chữ? Dán tay vào đây</i>, dán key, bấm <b>KÍCH HOẠT BẰNG KEY</b>.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="no">6 / 14</span>
+  <h2>Giao diện chính</h2>
+  <table>
+    <tr><th>Khu vực</th><th>Chức năng</th></tr>
+    <tr><td><b>Thanh trên cùng</b></td><td>Tên phần mềm; dải vàng hướng dẫn nhanh; ô trạng thái bản quyền (màu xanh = còn hạn, đỏ = chưa kích hoạt).</td></tr>
+    <tr><td><b>🎬 Làm video</b></td><td>Trang chính, gồm các bước 1–5 và nút LÀM VIDEO.</td></tr>
+    <tr><td><b>🔑 Khoá API &amp; Meme</b></td><td>Nhập các khoá: OpenAI, giọng đọc (ai84.pro/ElevenLabs), GIPHY; nhạc nền.</td></tr>
+    <tr><td><b>📁 Thư mục</b></td><td>Mở nhanh các thư mục làm việc; nút cập nhật bộ tải video.</td></tr>
+    <tr><td><b>❓ Hướng dẫn</b></td><td>Tóm tắt cách dùng và mục bản quyền ngay trong app.</td></tr>
+  </table>
+  <div class="tip">Cài đặt được <b>tự lưu</b> mỗi khi anh chị đổi một ô. Không cần bấm lưu riêng (trừ các ô khoá).</div>
+</section>
+
+<section class="slide">
+  <span class="no">7 / 14</span>
+  <h2>Bước 1 — Từ khoá hot</h2>
+  <table>
+    <tr><th>Mục</th><th>Cách dùng</th></tr>
+    <tr><td><b>Chủ đề tự nhập</b> (ô bên cạnh)</td><td>Gõ chủ đề riêng của anh chị (VD: chó học nhảy). Khi có chữ ở đây, tool dùng chủ đề này thay cho ô chọn.</td></tr>
+    <tr><td><b>Chủ đề</b> (ô chọn)</td><td>Chọn chủ đề: Video vui nhộn, Thú cưng, Té ngã/Fail, Satisfying, Thiên tài/Khéo tay.</td></tr>
+    <tr><td><b>🔍 TÌM TỪ KHOÁ HOT</b></td><td>Lấy danh sách từ khoá đang được tìm nhiều trên YouTube. Chờ vài giây.</td></tr>
+    <tr><td><b>Ô gõ từ khoá riêng</b></td><td>Gõ từ khoá tiếng Anh rồi nhấn <code>Enter</code> để thêm vào danh sách.</td></tr>
+    <tr><td><b>Chip từ khoá</b></td><td>Bấm để chọn (vàng = đã chọn). Bấm lại để bỏ chọn.</td></tr>
+    <tr><td><b>Đã chọn: N</b></td><td>Số từ khoá đang chọn. Nên chọn <b>3–5</b> từ khoá.</td></tr>
+  </table>
+  <div class="warn">Chế độ Creative Commons có ít clip: chọn nhiều từ khoá để đủ nguồn.</div>
+</section>
+
+<section class="slide">
+  <span class="no">8 / 14</span>
+  <h2>Bước 2 — Lấy nguồn video</h2>
+  <h3>Chọn chế độ nguồn (3 thẻ)</h3>
+  <table>
+    <tr><th>Thẻ</th><th>Ý nghĩa</th></tr>
+    <tr><td>🟢 <b>Creative Commons</b> (khuyên dùng)</td><td>Chỉ tải clip YouTube có giấy phép CC BY, tự ghi nguồn.</td></tr>
+    <tr><td>🔵 <b>Chỉ nguồn có phép</b></td><td>Chỉ dùng clip trong thư mục <code>nguon_co_phep</code> (tự quay, đã mua giấy phép).</td></tr>
+    <tr><td>🔴 <b>Tự do</b></td><td>Tải bất kỳ video nào. Rủi ro bản quyền cao; app hỏi xác nhận khi chọn.</td></tr>
+  </table>
+  <h3>Các ô còn lại</h3>
+  <table>
+    <tr><th>Ô / nút</th><th>Cách dùng</th></tr>
+    <tr><td><b>Tự tìm trên YouTube theo từ khoá đã chọn</b></td><td>Bật để tool tự tải clip theo từ khoá ở bước 1.</td></tr>
+    <tr><td><b>Mỗi từ khoá lấy __ clip</b></td><td>Số clip tải cho mỗi từ khoá (mặc định 4).</td></tr>
+    <tr><td><b>Bỏ video tổng hợp của kênh khác</b></td><td>Bật để bỏ video "compilation" của kênh khác, lấy clip gốc.</td></tr>
+    <tr><td><b>Bỏ clip trùng nhau</b></td><td>Bật để loại clip giống nhau giữa các nguồn.</td></tr>
+    <tr><td><b>Dán link lẻ</b></td><td>Mỗi dòng 1 link YouTube/Facebook/TikTok. Chỉ dán video anh chị có quyền dùng.</td></tr>
+    <tr><td><b>video_goc / nguon_co_phep</b></td><td>Số file đang có sẵn. Nút 📂 mở thư mục để bỏ thêm clip.</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <span class="no">9 / 14</span>
+  <h2>Bước 3 — Hook (tuỳ chọn)</h2>
+  <p>Hook là đoạn <b>mở đầu</b> gây chú ý, thường 10–30 giây.</p>
+  <table>
+    <tr><th>Mục</th><th>Cách dùng</th></tr>
+    <tr><td><b>Ô dán link hook</b></td><td>Dán link video ngắn (Facebook, Instagram, TikTok, YouTube), mỗi dòng 1 link.</td></tr>
+    <tr><td><b>Đang có N file trong thư mục hook</b></td><td>Số file hook đã có sẵn trong thư mục <code>hook</code>.</td></tr>
+    <tr><td><b>📂 Mở thư mục hook</b></td><td>Mở thư mục để bỏ file hook vào.</td></tr>
+    <tr><td><b>Ô "Tự làm hook nếu không có"</b> (ở bước 4)</td><td>Khi không có hook, tool tự ghép 4 khoảnh khắc hay nhất làm hook.</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <span class="no">10 / 14</span>
+  <h2>Bước 4 — Kiểu video</h2>
+  <table>
+    <tr><th>Ô</th><th>Ý nghĩa &amp; gợi ý</th></tr>
+    <tr><td><b>⏱ Video dài (phút)</b></td><td>Độ dài video. Gợi ý 8–12 phút cho lần đầu.</td></tr>
+    <tr><td><b>🎞 Làm __ video</b></td><td>Số video làm ra, mỗi video không trùng nhau.</td></tr>
+    <tr><td><b>🤖 AI chấm __ khoảnh khắc</b></td><td>Số khoảnh khắc AI chấm điểm. Tăng lên thì tốn thêm tiền OpenAI.</td></tr>
+    <tr><td><b>💥 Chữ bật + tiếng động, cứ __</b></td><td>Cứ bao nhiêu khoảnh khắc thì có chữ bật ("BONK!") kèm tiếng động.</td></tr>
+    <tr><td><b>🧱 Cấu trúc</b></td><td><b>Tuyến câu chuyện</b> (có bài học, khuyên dùng) · <b>Chia chương</b> theo chủ đề · <b>Top đếm ngược</b> #N→#1.</td></tr>
+    <tr><td><b>📱 Kèm Shorts 9:16</b></td><td>Số video dọc ngắn đi kèm mỗi video (0 = không làm).</td></tr>
+    <tr><td><b>🎚 Chất lượng xuất</b></td><td>Nhanh · Chuẩn (khuyên dùng) · Cao (chậm hơn, nét hơn).</td></tr>
+    <tr><td><b>✂ Độ dài mỗi khoảnh khắc</b></td><td>Nhanh 3–5 giây (khuyên dùng) · Vừa 4–7 giây.</td></tr>
+    <tr><td><b>🎵 Nhạc nền</b></td><td>Nút 📂 nhac_nen: bỏ nhạc không bản quyền vào đó, app tự trộn nhỏ dưới video.</td></tr>
+  </table>
+  <div class="box">Dòng <i>Ước tính</i> bên dưới bảng cho biết số khoảnh khắc cần và chi phí AI ước tính. Nếu có ⚠ thì nên tăng số AI chấm.</div>
+</section>
+
+<section class="slide">
+  <span class="no">11 / 14</span>
+  <h2>Bước 4 (tiếp) — Tuỳ chọn hình & ghi công</h2>
+  <table>
+    <tr><th>Ô (bật/tắt)</th><th>Tác dụng</th></tr>
+    <tr><td><b>Hiện tên kênh nguồn trên clip</b></td><td>Ghi công "Video: tên kênh" góc màn hình. Nên bật.</td></tr>
+    <tr><td><b>Chữ bật lúc cao trào</b></td><td>Chữ như BONK!, WOW! do tool tự vẽ.</td></tr>
+    <tr><td><b>Trang trí 3 ảnh bìa</b></td><td>Thêm mũi tên, vòng tròn, logo lên ảnh bìa.</td></tr>
+    <tr><td><b>Không trùng video đã làm</b></td><td>Nhớ các khoảnh khắc đã dùng để video sau không lặp lại. Nên bật.</td></tr>
+    <tr><td><b>Tự làm hook nếu không có</b></td><td>Xem slide Bước 3.</td></tr>
+    <tr><td><b>Chèn meme GIPHY</b> (màu đỏ)</td><td>Chèn meme tải từ GIPHY. <b>Rủi ro bản quyền</b> — mặc định tắt.</td></tr>
+    <tr><td><b>💾 Lưu video vào</b> + <b>Chọn thư mục</b></td><td>Thư mục để lưu video kết quả.</td></tr>
+    <tr><td><b>📝 Tiêu đề (tuỳ chọn)</b></td><td>Tên file. Để trống thì AI đặt tiêu đề.</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <span class="no">12 / 14</span>
+  <h2>Bước 5 — Lời bình & giọng đọc</h2>
+  <table>
+    <tr><th>Ô / nút</th><th>Cách dùng</th></tr>
+    <tr><td><b>Bật lời bình</b></td><td>Tắt thì video không có lời bình (chỉ hình và nhạc).</td></tr>
+    <tr><td><b>Ngôn ngữ lời bình</b></td><td>16 ngôn ngữ. Lời bình viết bằng ngôn ngữ này.</td></tr>
+    <tr><td><b>Tiêu đề/mô tả bằng</b></td><td>Ngôn ngữ của tiêu đề và mô tả YouTube. Để "giống lời bình" nếu không đổi.</td></tr>
+    <tr><td><b>Tỷ lệ lời bình (%)</b> 🆕</td><td>Bao nhiêu % khoảnh khắc có lời đọc. VD 70% = đa số có lời; 30% = để hình/tiếng gốc tự kể nhiều hơn; 0% = chỉ mở đầu/kết. Áp đúng cho mọi cấu trúc.</td></tr>
+    <tr><td><b>✍ Văn phong lời bình</b> 🆕</td><td>Tự gõ giọng điệu muốn có. Mặc định: "kể chuyện cuốn hút, giáo dục khán giả, pha chút hài". Sửa tuỳ ý (nghiêm túc chuyên gia / trẻ trung / truyền cảm hứng…).</td></tr>
+    <tr><td><b>🎙 Giọng đọc</b></td><td>Không giọng (chỉ phụ đề) · ai84.pro · ElevenLabs.</td></tr>
+    <tr><td><b>Mô hình</b></td><td>Thêm <b>Eleven v4</b> (mới nhất). Tiếng Việt dùng <b>Eleven v3</b> hoặc <b>v4</b>.</td></tr>
+    <tr><td><b>Tốc độ</b></td><td>Từ 0.7 đến 1.2. Mặc định 1.</td></tr>
+    <tr><td><b>Khoá API ai84 / ElevenLabs</b> + <b>Lưu khoá</b></td><td>Dán khoá của anh chị, bấm Lưu. Khoá được mã hoá trên máy.</td></tr>
+    <tr><td><b>ID hoặc tên giọng</b></td><td>Dán ID giọng (VD <code>UgBBYS2sOqTuMpoF3BR0</code>) hoặc gõ tên (VD <code>Adam</code>).</td></tr>
+    <tr><td><b>⬇ Tải danh sách giọng</b></td><td>Lấy danh sách giọng của tài khoản. Sau đó dòng <b>Giọng đã chọn</b> hiện tên giọng đang dùng. 🆕</td></tr>
+    <tr><td><b>▶ Nghe thử</b></td><td>Đọc một câu mẫu để nghe giọng. Hiện số credit còn lại.</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <span class="no">13 / 14</span>
+  <h2>Làm video, dừng, kết quả</h2>
+  <table>
+    <tr><th>Nút / khu vực</th><th>Chức năng</th></tr>
+    <tr><td><b>🎬 LÀM VIDEO</b></td><td>Bắt đầu. Trước khi chạy, app kiểm tra có nguồn và khoá không.</td></tr>
+    <tr><td><b>⏹ DỪNG</b></td><td>Dừng ngay. Video đang làm sẽ không được lưu.</td></tr>
+    <tr><td><b>📁 KẾT QUẢ</b></td><td>Mở thư mục lưu video.</td></tr>
+    <tr><td><b>Thanh tiến độ &amp; dòng trạng thái</b></td><td>Hiện bước đang làm và phần trăm hoàn thành.</td></tr>
+    <tr><td><b>Nhật ký</b> (khung đen)</td><td>Ghi chi tiết từng bước; báo lỗi nếu có.</td></tr>
+    <tr><td><b>Khu kết quả</b></td><td>Ảnh bìa (3 phương án), tiêu đề, độ dài, <b>Rủi ro bản quyền</b>. Bấm <b>📂 Mở file</b> để mở video.</td></tr>
+  </table>
+  <div class="tip">Trong thư mục kết quả có: video (.mp4), file .txt (tiêu đề, mô tả, nguồn, báo cáo bản quyền), 3 ảnh bìa, và thư mục <code>Shorts</code>.</div>
+</section>
+
+<section class="slide">
+  <span class="no">14 / 14</span>
+  <h2>Khoá API, thư mục &amp; lưu ý bản quyền</h2>
+  <div class="cols">
+    <div>
+      <h3>Khoá API</h3>
+      <ul>
+        <li><b>OpenAI</b> — bắt buộc để AI chấm và viết lời bình. Dán khoá bắt đầu bằng <code>sk-</code>, bấm Lưu → Kiểm tra.</li>
+        <li><b>ai84.pro / ElevenLabs</b> — không bắt buộc, dùng để đọc lời bình.</li>
+        <li><b>GIPHY</b> — không khuyên dùng (meme thường cắt từ phim).</li>
+      </ul>
+      <h3>Thư mục</h3>
+      <ul>
+        <li><code>nguon_co_phep</code> · <code>video_goc</code> · <code>hook</code> · <code>ket_qua</code> · <code>nhac_nen</code> · <code>tieng_dong</code></li>
+        <li>Mục <i>Bộ tải video</i> (📁 Thư mục) có nút <b>Cập nhật yt-dlp</b> khi tải lỗi hàng loạt.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Lỗi thường gặp</h3>
+      <ul>
+        <li><b>"Không có nguồn phù hợp"</b> → thêm từ khoá, hoặc bỏ clip có phép vào <code>nguon_co_phep</code>.</li>
+        <li><b>Lời bình vẫn là tiếng Anh</b> → kiểm tra ô <i>Ngôn ngữ lời bình</i>.</li>
+        <li><b>Không có giọng đọc</b> → kiểm tra khoá ai84/ElevenLabs và đã bấm Lưu khoá.</li>
+        <li><b>"YouTube chặn tạm (403)"</b> → app tự thử lại; nếu vẫn lỗi, bấm Cập nhật yt-dlp.</li>
+      </ul>
+      <div class="warn">Đăng ở chế độ <b>Không công khai</b> trước, đợi mục <b>Kiểm tra</b> (Checks) của YouTube báo ổn rồi mới công khai.</div>
+    </div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>
